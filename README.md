@@ -29,5 +29,6 @@ $ docker push alperunal92/helloworld:latest
 # Deploy a flask app on AWS Elasticbeanstalk with Docker
 
 ```bash
-Show a Dockerrun.aws.json file here -> https://github.com/alperunal92/helloworld/blob/master/Dockerrun.aws.json
+Show a Dockerrun.aws.json file here -> 
 ```
+https://github.com/alperunal92/helloworld/blob/master/Dockerrun.aws.json
