@@ -41,6 +41,8 @@ Once your app has been deployed successfully, navigate to your app URL: http://h
 
 # Automated CI/CD Pipeline Process
 
+[![buddy pipeline](https://app.buddy.works/alperunal92/helloworld/pipelines/pipeline/235276/badge.svg?token=8b616c7433aa7fd363964ee100ab5d34491758de398fb0bfce35f5620007c0f8 "buddy pipeline")](https://app.buddy.works/alperunal92/helloworld/pipelines/pipeline/235276)
+
 In this section, I will outline how to automate the process to look like this:
 New code is pushed up to GitHub.
 The Docker image is automatically built and pushed to Docker Hub.
@@ -56,5 +58,5 @@ I linked my github repository and aws crendentials for automatically deployment 
 The pipeline architecture is that
 
 ![picture](https://github.com/alperunal92/helloworld/blob/master/images/13.PNG)
+
 ![picture](https://github.com/alperunal92/helloworld/blob/master/images/14.PNG)
-![picture](https://github.com/alperunal92/helloworld/blob/master/images/15.PNG)
