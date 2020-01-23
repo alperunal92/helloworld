@@ -11,13 +11,13 @@ $ cd helloworldtask
 Build the image using the following command
 
 ```bash
-$ docker build -t helloworld:latest .
+$ docker build -t alperunal92/helloworld:latest .
 ```
 
 Run the Docker container using the command shown below.
 
 ```bash
-$ docker run -d -p 5000:5000 helloworld
+$ docker run -d -p 5000:5000 alperunal92/helloworld:latest
 ```
 
 # GitHub Actions deploy Flask to AWS Elastic Beanstalk
