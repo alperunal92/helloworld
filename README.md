@@ -60,3 +60,5 @@ The pipeline architecture is that
 ![picture](https://github.com/alperunal92/helloworld/blob/master/images/13.PNG)
 
 ![picture](https://github.com/alperunal92/helloworld/blob/master/images/14.PNG)
+
+![picture](https://github.com/alperunal92/helloworld/blob/master/images/15.PNG)
