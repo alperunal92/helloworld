@@ -32,3 +32,5 @@ $ docker push alperunal92/helloworld:latest
 Show a Dockerrun.aws.json file here -> 
 ```
 https://github.com/alperunal92/helloworld/blob/master/Dockerrun.aws.json
+
+Deployment of the AWS Elasticbeanstalk
