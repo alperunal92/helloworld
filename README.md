@@ -39,7 +39,16 @@ https://github.com/alperunal92/helloworld/blob/master/Dockerrun.aws.json
 
 Once your app has been deployed successfully, navigate to your app URL: http://helloworld-env.rxnur2ffn5.us-west-2.elasticbeanstalk.com/
 
-# Automated CI/CD Pipeline Process
+# Automated CI/CD Pipeline Process with Github Actions with yml file
+![GitHub Actions status] (https://github.com/alperunal92/helloworld/workflows/Docker%20Image%20CI/CD%20and%20Deployment%20AWS%20Elastic%20Beanstalk/badge.svg)
+
+You can see my yml file for github actions from here -> https://github.com/alperunal92/helloworld/blob/master/.github/workflows/cicd.yml
+
+![picture](https://github.com/alperunal92/helloworld/blob/master/images/16.PNG)
+
+![picture](https://github.com/alperunal92/helloworld/blob/master/images/17.PNG)
+
+# Automated CI/CD Pipeline Process with tool (Buddy)
 
 [![buddy pipeline](https://app.buddy.works/alperunal92/helloworld/pipelines/pipeline/235276/badge.svg?token=8b616c7433aa7fd363964ee100ab5d34491758de398fb0bfce35f5620007c0f8 "buddy pipeline")](https://app.buddy.works/alperunal92/helloworld/pipelines/pipeline/235276)
 
