@@ -15,6 +15,12 @@ jobs:
       
     - name: Image push
       run: docker push ${{ secrets.DOCKER_USER }}/helloworld:latest 
+      
+    - name: Checkout source code
+      uses: actions/checkout@v1
+
+    - name: Generate deployment package
+      run: zip deploy.zip *.js *.json *.html *.css
          
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v4
