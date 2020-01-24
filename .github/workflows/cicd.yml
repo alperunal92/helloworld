@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI/CD and Deployment AWS Elastic Beanstalk
 on: [push]
 
 jobs:
@@ -14,4 +14,13 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Image push
-      run: docker push ${{ secrets.DOCKER_USER }}/helloworld:latest      
+      run: docker push ${{ secrets.DOCKER_USER }}/helloworld:latest 
+         
+    - name: Deploy to AWS Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v4
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Helloworld
+        environment_name: Helloworld-Environment
+        region: us-west-2
