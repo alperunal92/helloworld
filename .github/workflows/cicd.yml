@@ -1,6 +1,13 @@
 name: Docker Image CI/CD and Deployment AWS Elastic Beanstalk
 on: [push]
 
+env:
+  EB_PACKAGE_S3_BUCKET_NAME : "helloworld.flask-app"
+  EB_APPLICATION_NAME       : "helloworld"
+  EB_ENVIRONMENT_NAME       : "helloworld-env"
+  DEPLOY_PACKAGE_NAME       : "helloworld-app-${{ github.sha }}.zip"
+  AWS_REGION_NAME           : "us-west-2"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,13 +29,29 @@ jobs:
     - name: Generate deployment package
       run: zip deploy.zip *.js *.json *.html *.css
          
-    - name: Deploy to AWS Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v4
+    - name: Git clone our repository
+      uses: actions/checkout@v1
+            
+    - name: Create ZIP deployment package
+      run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./  -x  *.git*
+           
+    - name: Configure my AWS Credentils
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: Helloworld
-        environment_name: Helloworld-Environment
-        region: us-west-2
-        version_label: 1
-        deployment_package: deploy.zip
+           aws-access-key-id    : ${{ secrets.AWS_ACCESS_KEY }}
+           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+           aws-region           : ${{ env.AWS_REGION_NAME }}
+
+    - name: Copy our Deployment package to S3 bucket
+      run : aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME}}/
+      
+    - name: Create new ElasticBeanstalk Applicaiton Version
+      run : |
+            aws elasticbeanstalk create-application-version \
+            --application-name ${{ env.EB_APPLICATION_NAME }} \
+            --source-bundle S3Bucket="${{ env.EB_PACKAGE_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }}" \
+            --version-label "Ver-${{ github.sha }}" \
+            --description "CommitSHA-${{ github.sha }}"
+         
+    - name: Deploy our new Application Version
+      run : aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Ver-${{ github.sha }}"
